@@ -1,0 +1,24 @@
+services:
+  erp-layout:
+    container_name: erp-layout
+    build: .
+    restart: unless-stopped
+    ports:
+      - "8082:8082"
+    environment:
+      - JAVA_OPTS=-XX:MaxRAMPercentage=75.0
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/erp_layout
+      - DB_USERNAME=${DB_USERNAME:-erp_admin}
+      - DB_PASSWORD=${DB_PASSWORD:-admin1234}
+      - JWT_SECRET=${JWT_SECRET:-change-this-super-secret-key-very-long-32-bytes-min}
+    networks:
+      - erp-platform
+    logging:
+      driver: "json-file"
+      options:
+        tag: "{{.Name}}"
+
+networks:
+  erp-platform:
+    external: true
+    name: erp-platform

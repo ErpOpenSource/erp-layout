@@ -1,0 +1,12 @@
+package com.erp.erp_layout.preferences.dto;
+
+import com.fasterxml.jackson.databind.JsonNode;
+import lombok.Data;
+
+@Data
+public class UpdatePreferencesDto {
+    private String theme;
+    private String language;
+    private Boolean sidebarCollapsed;
+    private JsonNode modulePrefs;
+}
